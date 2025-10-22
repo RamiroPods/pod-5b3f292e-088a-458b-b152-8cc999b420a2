@@ -1,19 +1,19 @@
-// API Configuration
 const getApiUrl = (): string => {
-  // In production, use the environment variable or default to relative path
   if (import.meta.env.PROD) {
     return import.meta.env.VITE_API_URL || '';
   }
-  
-  // In development, use environment variable or fallback to localhost
+
   return import.meta.env.VITE_API_URL || 'http://localhost:8000';
 };
 
 export const API_BASE_URL = getApiUrl();
 
-// API endpoints
+const prefix = (path: string) => `${API_BASE_URL}${path}`;
+
 export const API_ENDPOINTS = {
-  SUMMARIZE: `./api/summarize`,
-  HEALTH: `./health`,
-  INFO: `./api/info`,
-} as const; 
+  PRODUCTS: prefix('/api/products'),
+  PRODUCT: (id: string) => prefix(`/api/products/${id}`),
+  GENERATE_DESCRIPTION: prefix('/api/products/generate'),
+  HEALTH: prefix('/health'),
+  INFO: prefix('/api/info'),
+} as const;

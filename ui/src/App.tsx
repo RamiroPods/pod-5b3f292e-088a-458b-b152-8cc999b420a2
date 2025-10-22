@@ -1,7 +1,7 @@
-import { TextSummarizer } from './components/TextSummarizer'
+import { ProductDescriptionManager } from './components/ProductDescriptionManager'
 
 function App() {
-  return <TextSummarizer />
+  return <ProductDescriptionManager />
 }
 
 export default App
